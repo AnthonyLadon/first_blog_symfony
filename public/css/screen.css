@@ -1,0 +1,47 @@
+
+/* CSS Mini Reset */
+
+html, body, div, form, fieldset, legend, label
+{
+ margin: 0;
+ padding: 0; 
+}
+
+table
+{
+ border-collapse: collapse;
+ border-spacing: 0;
+}
+
+th, td
+{
+ text-align: left;
+ vertical-align: top;
+}
+
+img { border: 0; }
+
+
+
+.l-main-nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color: #f1f1f1;
+}
+
+.l-main-nav li{
+    display: inline-block;
+    padding: 8px 16px;
+}
+
+.l-main-nav a{
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+.l-main-nav li a:hover {
+    background-color: #555;
+    color: white;
+  }

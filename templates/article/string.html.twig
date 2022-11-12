@@ -3,16 +3,21 @@
 {% block title %}Articles de mon super Blog{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
 <div class="example-wrapper">
     <h1>Mon super blog</h1>
     <div>
-    <p>Afficher le premier élément d’un tableau de string</p>
-
+        <p>Exercice: Afficher le premier élément d’un tableau de string</p>
+        <h3>{{titre_string}}</h3>
+        {{tab_string|first}}
+    </div>
+    <div>
+        <h3>Premiere lettre en majuscule: </h3>
+        {% for item in tab_string %}
+        {# Prend la 1ere lettre et la uppercase puis a l'aide de slice coupe le 
+        reste de la string et le colle a la suite #}
+            <li> {{item|first|upper}}{{item|slice(1,item|length)}}</li>
+        {% endfor %}
     </div>
 </div>
 {% endblock %}

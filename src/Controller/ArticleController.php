@@ -2,9 +2,10 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Faker\Factory;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ArticleController extends AbstractController
 {
@@ -43,12 +44,39 @@ class ArticleController extends AbstractController
     /**
      * @route("/article/string")
      */
-    public function array_string(): Response
+    public function array_first(): Response
     {
+        $tabString = [
+            "lorem ipsum dolor sit amet consectetur adipiscing elit",
+            "mus eros aptent tincidunt tristique nulla ut aliquet",
+            "orci potenti vehicula laoreet porta ultrices"
+        ];
         return $this->render(
             'article/string.html.twig',
             [
-                'titre_string' => 'Voici le premier item du tableau de string:'
+                'titre_string' => 'Voici le premier item du tableau de string:',
+                'tab_string' => $tabString
+            ]
+        );
+    }
+
+    /**
+     * @route("/article/date")
+     */
+
+    public function date(): Response
+    {
+
+        $date_random = rand(strtotime("Jan 01 2013"), strtotime("Dec 01 2033"));
+        //  = date("d.m.Y", $timestamp);
+        // $current_date = date("d.m.Y");
+
+        return $this->render(
+            'article/date.html.twig',
+            [
+                'titre_date' => 'Date',
+                'date_rand' => $date_random
+
             ]
         );
     }

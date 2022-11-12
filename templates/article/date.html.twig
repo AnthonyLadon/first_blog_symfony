@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Articles de mon super Blog{% endblock %}
+
+{% block body %}
+
+
+<div class="example-wrapper">
+    <h1>Mon super blog</h1>
+    <h3>Ici nous gérons la {{titre_date}}</h3>
+    <p>Exercice: Envoyer une date et faire un affichage différent si la date est supérieure ou inférieure a celle d’aujourd’hui</p>
+    
+    <p>Date aujourd'hui : {{"now" | date('d.m.Y')}} </p>
+    {# Creation d'une date random en php et traitée ici #}
+    <p> Si la date est en rouge c'est qu'elle est > à la date d'aujourd'hui:
+    <span id="date_random">{{date_rand | date('d.m.Y')}}</span></p>
+    {# Comparaison avec la date d'aujourd'hui "now" | date('U') 
+    'U' signifiant Unix ( = le total de secondes)  #}
+    
+    {% if date_rand | date('U') > "now" | date('U') %}
+    {# modification du css si la condition est rencontrée #}
+        {% apply inline_css %}
+            <style>
+                #date_random { color: red; }
+            </style>
+        {% endapply %}
+    {% endif %}
+</div>
+{% endblock %}
