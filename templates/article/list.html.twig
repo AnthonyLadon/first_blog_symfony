@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Articles de mon super Blog{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Mon super blog</h1>
+    <p>Un tableau de nombre aléatoires, ceux-ci seront affiché de manière à séparer les nombres paires des nombres impaires
+    </p>
+
+    <div>
+        <h3> {{titre_nb}}</h3>
+        <table>
+            <th>pairs</th>
+            {# Triage les chiffres pairs #}
+                {% for item in tab_nombres|sort %}
+                    {% if item is even %}
+                    <tr>
+                        <td>{{item}}</td>
+                    </tr>
+                    {% endif %}
+                {% endfor %}
+            <th>impairs</th>
+            {# Triage les chiffres impairs #}
+
+                {% for item in tab_nombres|sort %}
+                    {% if item is odd %}
+                    <tr>
+                        <td>{{item}}</td>
+                    </tr>
+                    {% endif %}
+                {% endfor %}
+        </table>
+    </div>
+    <a href="http://localhost:8000/article/string">vers page string</a>
+</div>
+{% endblock %}
