@@ -10,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ArticleController extends AbstractController
 {
     /**
-     * @route("/article")
+     * @route("/article", name="blog")
      */
 
     public function index(): Response
@@ -42,7 +42,7 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * @route("/article/string")
+     * @route("/article/string", name="articles")
      */
     public function array_first(): Response
     {
@@ -61,7 +61,7 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * @route("/article/date")
+     * @route("/article/date", name="date")
      */
 
     public function date(): Response
@@ -78,6 +78,30 @@ class ArticleController extends AbstractController
                 'date_rand' => $date_random
 
             ]
+        );
+    }
+
+    /**
+     * @Route("/nom")
+     */
+
+    public function MonNom(): Response
+    {
+        return new Response(
+            '<html><body>Hello I\'m Anthony Ladon</body></html>'
+        );
+    }
+
+    /**
+     * @Route("/nombre")
+     */
+
+    public function number(): Response
+    {
+        $number = random_int(0, 100);
+
+        return new Response(
+            '<html><body>Mon nombre: ' . $number . '</body></html>'
         );
     }
 }

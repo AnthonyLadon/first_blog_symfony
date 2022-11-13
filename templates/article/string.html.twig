@@ -3,8 +3,6 @@
 {% block title %}Articles de mon super Blog{% endblock %}
 
 {% block body %}
-
-<div class="example-wrapper">
     <h1>Mon super blog</h1>
     <div>
         <p>Exercice: Afficher le premier élément d’un tableau de string</p>
@@ -19,5 +17,7 @@
             <li> {{item|first|upper}}{{item|slice(1,item|length)}}</li>
         {% endfor %}
     </div>
-</div>
+    <div>
+        <a href="#">Voir l'article</a>
+    </div>
 {% endblock %}
