@@ -23,6 +23,7 @@ class Article
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $date = null;
 
+
     public function getId(): ?int
     {
         return $this->id;

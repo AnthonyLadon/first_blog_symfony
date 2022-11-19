@@ -128,20 +128,20 @@ class ArticleController extends AbstractController
 
     public function new(EntityManagerInterface $entityManager): Response
     {
-        $article = new Article();
-        $article->setTitre('Mon article');
-        $article->setContenu('Lorem ipsum dolor sit amet,adised temlis.');
-        $article->setDate(new DateTime(2015 - 01 - 01));
+        // $article = new Article();
+        // $article->setTitre('Mon article');
+        // $article->setContenu('Lorem ipsum dolor sit amet,adised temlis.');
+        // $article->setDate(new DateTime(2015 - 01 - 01));
 
-        // $article2 = new Article();
-        // $article2->setTitle('Mon article');
-        // $article2->setContent('Lorem ipsum dolor magique sit amet,adised temlis.');
-        // $article2->setCreationDate(new DateTime(2018 - 01 - 01));
+        // $article = new Article();
+        // $article->setTitre('Mon article');
+        // $article->setContenu('Lorem ipsum dolor magique sit amet,adised temlis.');
+        // $article->setDate(new DateTime(2018 - 01 - 01));
 
-        // $article3 = new Article();
-        // $article3->setTitle('Mon article');
-        // $article3->setContent('Lorem ipsum dolor sit amet,adised temlis.');
-        // $article3->setCreationDate(new DateTime(2021 - 01 - 01));
+        // $article = new Article();
+        // $article->setTitre('Mon article');
+        // $article->setContenu('Lorem ipsum dolor sit amet,adised temlis.');
+        // $article->setDate(new DateTime(2021 - 01 - 01));
 
         $entityManager->persist($article);
         $entityManager->flush();
