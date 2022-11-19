@@ -25,3 +25,7 @@ img { border: 0; }
 /* ******************* */
 
 
+.m-wrap-exercices{
+    margin : 2rem 0 0 0;
+    background-color: blueviolet;
+}

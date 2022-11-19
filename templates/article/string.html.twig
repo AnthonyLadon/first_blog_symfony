@@ -17,7 +17,13 @@
             <li> {{item|first|upper}}{{item|slice(1,item|length)}}</li>
         {% endfor %}
     </div>
-    <div>
-        <a href="#">Voir l'article</a>
-    </div>
+    <button class="btn-dark">
+        <a class="nav-link" href="{{ path('detail', { numero: '1' }) }}">Voir l'article 1</a>
+    </button>
+        <button class="btn-dark">
+        <a class="nav-link" href="{{ path('detail', { numero: '2' }) }}">Voir l'article 2</a>
+    </button>
+            <button class="btn-dark">
+        <a class="nav-link" href="{{ path('detail', { numero: '3' }) }}">Voir l'article 3</a>
+    </button>
 {% endblock %}

@@ -2,10 +2,13 @@
 
 namespace App\Controller;
 
-use Faker\Factory;
+use App\Entity\Article;
+use DateTime;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
 
 class ArticleController extends AbstractController
 {
@@ -67,7 +70,7 @@ class ArticleController extends AbstractController
     public function date(): Response
     {
 
-        $date_random = rand(strtotime("Jan 01 2013"), strtotime("Dec 01 2033"));
+        $date_random = rand(strtotime("Jan 01 2020"), strtotime("Dec 01 2025"));
         //  = date("d.m.Y", $timestamp);
         // $current_date = date("d.m.Y");
 
@@ -76,7 +79,6 @@ class ArticleController extends AbstractController
             [
                 'titre_date' => 'Date',
                 'date_rand' => $date_random
-
             ]
         );
     }
@@ -103,5 +105,47 @@ class ArticleController extends AbstractController
         return new Response(
             '<html><body>Mon nombre: ' . $number . '</body></html>'
         );
+    }
+
+    /**
+     * @Route("article/detail{numero}", name="detail")
+     */
+
+    // A FAIRE: passer paramêtre numero dans la route 
+    public function detail($numero)
+    {
+        return $this->render(
+            'article/detail.html.twig',
+            [
+                'numero' => $numero
+            ]
+        );
+    }
+
+    /**
+     * @Route("article/ajout")
+     */
+
+    public function new(EntityManagerInterface $entityManager): Response
+    {
+        $article = new Article();
+        $article->setTitre('Mon article');
+        $article->setContenu('Lorem ipsum dolor sit amet,adised temlis.');
+        $article->setDate(new DateTime(2015 - 01 - 01));
+
+        // $article2 = new Article();
+        // $article2->setTitle('Mon article');
+        // $article2->setContent('Lorem ipsum dolor magique sit amet,adised temlis.');
+        // $article2->setCreationDate(new DateTime(2018 - 01 - 01));
+
+        // $article3 = new Article();
+        // $article3->setTitle('Mon article');
+        // $article3->setContent('Lorem ipsum dolor sit amet,adised temlis.');
+        // $article3->setCreationDate(new DateTime(2021 - 01 - 01));
+
+        $entityManager->persist($article);
+        $entityManager->flush();
+
+        return new Response("Article bien envoyé en base de donnée");
     }
 }

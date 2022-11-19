@@ -9,3 +9,8 @@
 
 </div>
 {% endblock %}
+{% block javascripts %}
+{# ne pas overrider le script parent #} 
+{{ parent() }}
+<script src="{{ asset('js/vote.js') }}"></script> 
+{% endblock %}

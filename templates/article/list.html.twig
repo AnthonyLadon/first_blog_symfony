@@ -5,7 +5,7 @@
 {% block body %}
 
 <div class="container">
-    <h1>Mon super blog</h1>
+    <h1 scope="row">Mon super blog</h1>
     <p>Exercice: Créer un tableau de nombre aléatoires, ceux-ci seront affiché de manière à séparer les nombres paires des nombres impaires
     </p>
 
@@ -33,13 +33,15 @@
                 {% endfor %}
         </table>
     </div>
-    <div>
-        <p> Exercice: Afficher le plus grand nombre de votre tableau de nombre</p>
-        {{ max(tab_nombres) }}
-    </div>
-       <div>
-        <p> Exercice: Afficher aléatoirement une des valeurs de mon tableau: </p>
-        {{ random(tab_nombres)}}
+    <div class="row align-items-start">
+        <div class="col">
+            <p class="p-2"> Exercice: Afficher le plus grand nombre de votre tableau de nombre:</p>
+            <p class="p-2">{{ max(tab_nombres) }}</p>
+        </div>
+        <div class="col">
+            <p class="p-2"> Exercice: Afficher aléatoirement une des valeurs de mon tableau:</p>
+            <p class="p-2">{{ random(tab_nombres)}}</p>
+        </div>
     </div>
 </div>
 {% endblock %}
