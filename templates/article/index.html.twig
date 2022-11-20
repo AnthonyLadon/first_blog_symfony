@@ -7,6 +7,23 @@
 <div class="container">
     <h1 class="">Bienvenue sur mon Blog</h1>
 
+    <h3>Voici les articles contenants le mot "magique":</h3>
+    <a href="{{ path ('afficherParContenu', { contenu : "magique"}) }}">Articles "magiques"</a>
+
+    <h3>Articles par années:</h3>
+    <ul>
+        <li>
+            <a href='{{path ('afficherParAnnee', { annee : 2015}) }}'>2015</a>
+        </li>
+                <li>
+            <a href='{{path ('afficherParAnnee', { annee : 2018}) }}'>2018</a>
+        </li>
+                <li>
+            <a href='{{path ('afficherParAnnee', { annee : 2021}) }}'>2021</a>
+        </li>
+    </ul>
+
+
 </div>
 {% endblock %}
 {% block javascripts %}

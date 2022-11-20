@@ -39,28 +39,62 @@ class ArticleRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Article[] Returns an array of Article objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('a.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    /**
+     * @return Article[] Returns an array of Article objects
+     */
 
-//    public function findOneBySomeField($value): ?Article
-//    {
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function findByContent($contenu)
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.contenu like :contenu')
+            ->setParameter('contenu', '%' . $contenu . '%')
+            ->orderBy('a.date', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult();
+    }
+
+
+    /**
+     * @return Article[] Returns an array of Article objects
+     */
+
+    public function findByYear($annee)
+    {
+        return $this->createQueryBuilder('d')
+            ->andWhere('d.date like :annee')
+            ->setParameter('date', '%' . $annee . '%')
+            ->orderBy('d.date', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult();
+    }
+
+
+
+    //    /**
+    //     * @return Article[] Returns an array of Article objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('a')
+    //            ->andWhere('a.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('a.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
+
+    //    public function findOneBySomeField($value): ?Article
+    //    {
+    //        return $this->createQueryBuilder('a')
+    //            ->andWhere('a.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
+
 }

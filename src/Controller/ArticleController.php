@@ -45,7 +45,7 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * @route("/article/string", name="articles")
+     * @route("/article/string")
      */
     public function array_first(): Response
     {
@@ -108,7 +108,7 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * @Route("article/detail{numero}", name="detail")
+     * @Route("article/detail{numero}")
      */
 
     // A FAIRE: passer paramêtre numero dans la route 
@@ -122,6 +122,7 @@ class ArticleController extends AbstractController
         );
     }
 
+
     /**
      * @Route("article/ajout")
      */
@@ -129,23 +130,91 @@ class ArticleController extends AbstractController
     public function new(EntityManagerInterface $entityManager): Response
     {
         // $article = new Article();
-        // $article->setTitre('Mon article');
+        // $article->setTitre('Mon article 1');
         // $article->setContenu('Lorem ipsum dolor sit amet,adised temlis.');
-        // $article->setDate(new DateTime(2015 - 01 - 01));
+        // $article->setDate(new DateTime("2015-03-14 00:00"));
 
         // $article = new Article();
-        // $article->setTitre('Mon article');
+        // $article->setTitre('Mon article 2');
         // $article->setContenu('Lorem ipsum dolor magique sit amet,adised temlis.');
-        // $article->setDate(new DateTime(2018 - 01 - 01));
+        // $article->setDate(new DateTime("2018-01-01 00:00"));
 
         // $article = new Article();
-        // $article->setTitre('Mon article');
+        // $article->setTitre('Mon article 3');
         // $article->setContenu('Lorem ipsum dolor sit amet,adised temlis.');
-        // $article->setDate(new DateTime(2021 - 01 - 01));
+        // $article->setDate(new DateTime("2021-01-01 00:00"));
 
-        $entityManager->persist($article);
-        $entityManager->flush();
+        // $entityManager->persist($article);
+        // $entityManager->flush();
 
-        return new Response("Article bien envoyé en base de donnée");
+        // Pour effacer:
+        // $entityManager->remove($article);
+        // $entityManager->flush();
+
+        // return new Response("Article bien envoyé en base de donnée");
+    }
+
+
+    /**
+     * @Route("article/liste", name="articles")
+     */
+
+    public function listeArticles(EntityManagerInterface $entityManager)
+    {
+        $repository = $entityManager->getRepository(Article::class);
+
+        $article = $repository->findAll();
+
+        return $this->render(
+            'article/listeArticles.html.twig',
+            ['article' => $article]
+        );
+    }
+
+    /**
+     * @Route("article/detail/{id}", name="afficher_article")
+     */
+
+    public function detailArticles($id, EntityManagerInterface $entityManager)
+    {
+        $repository = $entityManager->getRepository(Article::class);
+
+        $article = $repository->find($id);
+
+        return $this->render(
+            'article/detail.html.twig',
+            [
+                'article' => $article
+            ]
+        );
+    }
+
+
+    /**
+     * @Route("article/liste/{contenu}", name="afficherParContenu")
+     */
+
+    public function articleParMotClef($contenu, EntityManagerInterface $entityManager)
+    {
+        $repository = $entityManager->getRepository(Article::class);
+        $article = $repository->findByContent($contenu);
+
+        return $this->render('article/listeArticles.html.twig', [
+            'article' => $article,
+        ]);
+    }
+
+    /**
+     * @Route("article/liste/{annee}", name="afficherParAnnee")
+     */
+
+    public function articleParAnnee($annee, EntityManagerInterface $entityManager)
+    {
+        $repository = $entityManager->getRepository(Article::class);
+        $article = $repository->findByYear($annee);
+
+        return $this->render('article/listeArticles.html.twig', [
+            'article' => $article,
+        ]);
     }
 }

@@ -3,6 +3,8 @@
 {% block title %}Article detail{% endblock %}
 
 {% block body %}
-    <h1>Detail de l'article n°{{numero}}</h1>
-
+    <h3>Voici le contenu de l'article "{{article.titre}}": </h3>
+    <p>{{ article.contenu }}</p>
+    <h3>Date de création: </h3>
+    <p>{{ article.date|date('d-m-Y') }}</p>
 {% endblock %}
