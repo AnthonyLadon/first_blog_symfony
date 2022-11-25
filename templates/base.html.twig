@@ -6,17 +6,18 @@
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         
         {% block stylesheets %}
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+            {# <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous"> #}
+            <link rel="stylesheet" href="css/screen.css">
         {% endblock %}
 
     </head>
 
-    <body style="background-color:#f8f1e5">
-        <nav style="background-color:#ea8f79" class="navbar navbar-expand-lg navbar-light">
-            <div class="container-fluid">
-                <div class="navbar-nav">
-                    <a style="color:#e4d183" class="nav-link" href="{{path('blog')}}">Home</a>
-                    <a style="color:#e4d183" class="nav-link" href="{{path('articles')}}">Articles</a>
+    <body>
+        <nav>
+            <div>
+                <div>
+                    <a href="{{path('blog')}}">Home</a>
+                    <a href="{{path('articles')}}">Articles</a>
                 </div>
             </div>
         </nav>
@@ -27,7 +28,7 @@
     </body>
 
     {% block footer %}
-        <footer class="p-3 text-center mt-5">
+        <footer>
             <p style="color: grey">This site was made by Anthony</p>
         </footer>
     {% endblock %}

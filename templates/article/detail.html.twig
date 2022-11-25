@@ -9,18 +9,18 @@
 
     {% endif %}
 
-            <div style="height:30rem" class="container-fluid mt-5">
-                <h1 class="text-xl-center" style="color:#9f609c">{{article.titre}}</h1>
-                <div class="container mt-4 p-0">
-                    <p class="text-xl-center" style="color:#9f609c">{{ article.contenu }}</p>
+            <div>
+                <h1>{{article.titre}}</h1>
+                <div >
+                    <p>{{ article.contenu }}</p>
                 </div>
-                <div class="container mt-4 p-0">
-                    <p class="text-xl-center small" style="color:#ea8f79">Id de l'article: {{article.id }}</p>
-                    <p class="text-xl-center small" style="color:#ea8f79">Date de création: {{ article.date|date('d-m-Y') }}</p>
+                <div>
+                    <p>Id de l'article: {{article.id }}</p>
+                    <p>Date de création: {{ article.date|date('d-m-Y') }}</p>
                 </div>
-                <form class="text-xl-center" action="{{ path('article_vote', { id: article.id }) }}" method="POST" style="color:#9f609c">
-                    <div class="vote-arrows vote-arrows-alt flex-fill pt-2" style="min-width: 90px">
-                        <button class="vote-up btn btn-link" name="direction" value="up">
+                <form action="{{ path('article_vote', { id: article.id }) }}" method="POST">
+                    <div>
+                        <button name="direction" value="up">
                             <?xml version="1.0" encoding="utf-8"?>
                             <!-- Generator: Adobe Illustrator 22.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
                             <svg fill="#9f609c" width="52" height="32" version="1.1" id="lni_lni-thumbs-up" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
@@ -34,7 +34,7 @@
                                 c0.3,0.4,0.8,0.7,1.4,0.7l2.9,0c4.1-0.1,11.8-0.3,13.4,3.2C61,35.3,58.8,48.9,52,53.4z"/>
                             </svg>
                         </button>
-                        <button class="vote-down btn btn-link" name="direction" value="down">
+                        <button name="direction" value="down">
                             <?xml version="1.0" encoding="utf-8"?>
                             <!-- Generator: Adobe Illustrator 22.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
                             <svg fill="#9f609c" width="52" height="32" version="1.1" id="lni_lni-thumbs-down" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
