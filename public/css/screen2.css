@@ -1,0 +1,224 @@
+
+/* CSS Mini Reset */
+
+html, body, div, form, fieldset, legend, label
+{
+ margin: 0;
+ padding: 0; 
+}
+
+ul, li{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+table
+{
+ border-collapse: collapse;
+ border-spacing: 0;
+}
+
+th, td
+{
+ text-align: left;
+ vertical-align: top;
+}
+
+img { border: 0; }
+
+h1, h2, h3, h4, h5, h6, li, a, p{
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+
+/* ******************* */
+
+body{
+    height: 100%;
+    background: rgb(255,255,255);
+    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(241,221,191,0.6031600140056023) 100%);
+}
+
+
+h1{
+    color:#6289A6;
+    font-size: 3rem;
+}
+
+h3{
+    color:#6289A6;
+}
+
+
+.l-main-nav{
+    display: flex;
+    padding: 0 0 0 1rem;
+    height: 3rem;
+    background-color: #f1ddbf;
+}
+
+.l-main-nav-link{
+    display: inline-block;
+    text-decoration: none;
+    font-size: 1.5rem;
+    margin: 0.5rem 0 0 0.5rem;
+    color: #6289A6;
+}
+
+.article-links{
+    text-decoration: none;
+    color: #A69172;
+    font-size: 1.2rem;
+    margin: 1rem 0 0 0;
+}
+
+.l-main-wrap{
+    padding : 0.5rem 1.5rem;
+    min-height: 30rem;
+}
+
+.l-main-footer{
+    padding: 1rem 0 2rem 0;
+    display: flex;
+    justify-content: center;
+    color: rgb(171, 171, 171);
+}
+
+
+/* Animmation vagues  */
+
+.wave-animation {
+    position: relative;
+    width: 100%;
+    height: 143px;
+    background-color: #f1ddbf;
+    background-size: cover;
+    background-attachment: fixed;
+    
+  }
+  .wave-animation .wave {
+    position: absolute;
+    width: 100%;
+    height: 143px;/*PNG*/
+    top:0;
+    left:0;
+    background-image: url('https://vitalflow.com.ar/img/anim-onda.png');
+    animation: anim 10s linear infinite;
+    
+  }
+  .wave-animation .wave:before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 143px;
+    top:0;
+    left:0;
+    background-image: url('https://vitalflow.com.ar/img/anim-onda.png');
+    opacity: 0.4;
+    animation: anim-rev 10s linear infinite;
+    
+  }
+  .wave-animation .wave:after{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 143px;
+    top:0;
+    left:0;
+    background-image: url('https://vitalflow.com.ar/img/anim-onda.png');
+    opacity: 0.6;
+    animation-delay: -5s;
+    animation: anim 20s linear infinite;
+    
+  }
+  @keyframes anim {
+    0%
+    {
+      background-position: 0;
+    }
+    100%
+    {
+      background-position: 1360px;
+    }
+  }
+  @keyframes anim-rev {
+    0%
+    {
+      background-position: 1360;
+    }
+    100%
+    {
+      background-position: 0px;
+    }
+  }
+
+  .article-cards-display{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:center;
+  }
+
+  .article-card{
+    text-decoration: none;
+    text-align:center;
+    color: #A69172;
+    display: block;
+    padding: 1rem;
+    margin: 1rem;
+    height: 6rem;
+    width: 6rem;
+    background: rgb(255,255,255);
+    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(241,221,191,1) 73%);
+    border-radius: 5px;
+  }
+
+
+  .m-article-title{
+    display: flex;
+    justify-content: center;
+  }
+
+  .m-article-content{
+    display: flex;
+    justify-content: center;
+    border-radius: 5px;
+    padding: 0.5rem;
+    background: rgb(255,255,255);
+    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(241,221,191,1) 73%);
+    color: #A69172;
+  }
+
+  .m-article-date{
+    display: flex;
+    justify-content: center;
+    font-size: 0.8rem;
+    color: #A69172;
+  }
+
+  .m-vote{
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0 0 0;
+  }
+
+  .m-vote-thumb{
+    border: none;
+  }
+
+  .vote-count{
+    color: #A69172;
+  }
+
+
+
+  /* **************************************** */
+
+
+@media (min-width: 750px) {
+    .l-main-wrap{
+        max-width: 700px;
+        margin : 1.5rem auto;
+    }
+  }
+

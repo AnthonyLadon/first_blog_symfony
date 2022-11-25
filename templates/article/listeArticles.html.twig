@@ -3,10 +3,12 @@
 {% block title %}Articles de mon super Blog{% endblock %}
 
 {% block body %}
-<ul class="list-group m-5">
-        <h1>Liste des articles</h1>
+<h1 class="m-article-title">Liste des articles</h1>
+        <ul class="article-cards-display">
 {% for art in article %}
-        <li><a href="{{ path ('afficher_article', { id : art.id }) }}">{{ art.titre }}</a></li>
+        <li>
+                <a class="article-card" href="{{ path ('afficher_article', { id : art.id }) }}">{{ art.titre }}</a>
+        </li>
 {% endfor %}
-    </ul>
+        </ul>
 {% endblock %}
