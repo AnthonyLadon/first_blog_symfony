@@ -23,6 +23,9 @@ class Article
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $date = null;
 
+    #[ORM\Column]
+    private ?int $votes = 0;
+
 
     public function getId(): ?int
     {
@@ -63,5 +66,34 @@ class Article
         $this->date = $date;
 
         return $this;
+    }
+
+    public function getVotes(): ?int
+    {
+        return $this->votes;
+    }
+
+    public function setVotes(int $votes): self
+    {
+        $this->votes = $votes;
+
+        return $this;
+    }
+
+    public function getVotesString(): string
+    {
+        $prefix = $this->getVotes() >= 0 ? '+' : '-';
+
+        return sprintf('%s %d', $prefix, abs($this->getVotes()));
+    }
+
+    public function upVote()
+    {
+        $this->setVotes($this->getVotes() + 1);
+    }
+
+    public function downVote()
+    {
+        $this->setVotes($this->getVotes() - 1);
     }
 }

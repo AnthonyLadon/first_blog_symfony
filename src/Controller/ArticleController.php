@@ -2,9 +2,10 @@
 
 namespace App\Controller;
 
-use App\Entity\Article;
 use DateTime;
+use App\Entity\Article;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -127,32 +128,32 @@ class ArticleController extends AbstractController
      * @Route("article/ajout")
      */
 
-    public function new(EntityManagerInterface $entityManager): Response
-    {
-        // $article = new Article();
-        // $article->setTitre('Mon article 1');
-        // $article->setContenu('Lorem ipsum dolor sit amet,adised temlis.');
-        // $article->setDate(new DateTime("2015-03-14 00:00"));
+    // public function new(EntityManagerInterface $entityManager): Response
+    // {
+    // $article = new Article();
+    // $article->setTitre('Mon article 1');
+    // $article->setContenu('Lorem ipsum dolor sit amet,adised temlis.');
+    // $article->setDate(new DateTime("2015-03-14 00:00"));
 
-        // $article = new Article();
-        // $article->setTitre('Mon article 2');
-        // $article->setContenu('Lorem ipsum dolor magique sit amet,adised temlis.');
-        // $article->setDate(new DateTime("2018-01-01 00:00"));
+    // $article = new Article();
+    // $article->setTitre('Mon article 2');
+    // $article->setContenu('Lorem ipsum dolor magique sit amet,adised temlis.');
+    // $article->setDate(new DateTime("2018-01-01 00:00"));
 
-        // $article = new Article();
-        // $article->setTitre('Mon article 3');
-        // $article->setContenu('Lorem ipsum dolor sit amet,adised temlis.');
-        // $article->setDate(new DateTime("2021-01-01 00:00"));
+    // $article = new Article();
+    // $article->setTitre('Mon article 3');
+    // $article->setContenu('Lorem ipsum dolor sit amet,adised temlis.');
+    // $article->setDate(new DateTime("2021-01-01 00:00"));
 
-        // $entityManager->persist($article);
-        // $entityManager->flush();
+    // $entityManager->persist($article);
+    // $entityManager->flush();
 
-        // Pour effacer:
-        // $entityManager->remove($article);
-        // $entityManager->flush();
+    // Pour effacer:
+    // $entityManager->remove($article);
+    // $entityManager->flush();
 
-        // return new Response("Article bien envoyé en base de donnée");
-    }
+    // return new Response("Article bien envoyé en base de donnée");
+    // }
 
 
     /**
@@ -191,7 +192,7 @@ class ArticleController extends AbstractController
 
 
     /**
-     * @Route("article/liste/{contenu}", name="afficherParContenu")
+     * @Route("article/liste/contenu/{contenu}", name="afficherParContenu")
      */
 
     public function articleParMotClef($contenu, EntityManagerInterface $entityManager)
@@ -205,7 +206,7 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * @Route("article/liste/{annee}", name="afficherParAnnee")
+     * @Route("article/liste/annee/{annee}", name="afficherParAnnee")
      */
 
     public function articleParAnnee($annee, EntityManagerInterface $entityManager)
@@ -216,5 +217,47 @@ class ArticleController extends AbstractController
         return $this->render('article/listeArticles.html.twig', [
             'article' => $article,
         ]);
+    }
+
+
+    // afficher un article via une requête automatique 
+    // ici pas besoin de déclarer le entity manager
+    // il va chercher par défaut la requête correspondant a l'argument en paramètre (ici id)
+
+    /**
+     * @Route("/article/afficher/{id}", name="afficherById") 
+     */
+    public function afficherById(Article $article): Response
+    {
+        return $this->render('article/detail.html.twig', [
+            'article' => $article
+        ]);
+    }
+
+    // ajouter une fonction de vote POST ONLY 
+    /**
+     * @Route("/article/afficher/{id}/voter", name="article_vote", methods="POST") 
+     */
+    public function articleVote(Article $article, Request $request, EntityManagerInterface $entityManager)
+    {
+        // afficher l'article et le contenu de a requête 
+        // dd($article, $request->request->all());
+
+        // récupérer la valeur de la direction via l'objet request 
+        $direction = $request->request->get('direction');
+
+        if ($direction === 'up') {
+            //  $article->setVotes($article->getVotes() + 1); 
+            $article->upVote();
+        } elseif ($direction === 'down') {
+            //  $article->setVotes($article->getVotes() - 1); 
+            $article->downVote();
+        }
+        $entityManager->flush();
+
+        // affichera votre URL article/voter
+        return $this->render('article/detail.html.twig', ['article' => $article,]);
+        // redirige vers la route d’affichage d’un article
+        return $this->redirectToRoute('afficherById', ['id' => $article->getId()]);
     }
 }

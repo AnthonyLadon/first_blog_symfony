@@ -5,24 +5,38 @@
 {% block body %}
 
 <div class="container">
-    <h1 class="">Bienvenue sur mon Blog</h1>
+    <h1 class="text-center mt-5" style="color:#9f609c">Bienvenue sur mon Blog</h1>
 
-    <h3>Voici les articles contenants le mot "magique":</h3>
-    <a href="{{ path ('afficherParContenu', { contenu : "magique"}) }}">Articles "magiques"</a>
+    <h3 style="color:#9f609c" class="list-group mt-5">Recherche par mot clef:</h3>
+    <p style="color:#ea8f79">
+        <a class="nav-link mt-3" href="{{ path ('afficherParContenu', { contenu : "magique"}) }}">Articles contenants le mot "magique"</a>
+    </p>
 
-    <h3>Articles par années:</h3>
-    <ul>
+    <h3 style="color:#9f609c">Articles par années:</h3>
+    <ul class="list-group m-3">
         <li>
-            <a href='{{path ('afficherParAnnee', { annee : 2015}) }}'>2015</a>
+            <button style="color:#ea8f79" class="btn"><a class="nav-link" href='{{path ('afficherParAnnee', { annee : 2015}) }}'>2015</a></button>
         </li>
                 <li>
-            <a href='{{path ('afficherParAnnee', { annee : 2018}) }}'>2018</a>
+            <button style="color:#ea8f79" class="btn"><a class="nav-link" href='{{path ('afficherParAnnee', { annee : 2018}) }}'>2018</a></button>
         </li>
                 <li>
-            <a href='{{path ('afficherParAnnee', { annee : 2021}) }}'>2021</a>
+            <button style="color:#ea8f79" class="btn"><a class="nav-link" href='{{path ('afficherParAnnee', { annee : 2021}) }}'>2021</a></button>
         </li>
     </ul>
 
+    <h3 style="color:#9f609c">Article par ID</h3>
+    <ul class="list-group m-3">
+        <li>
+            <button style="color:#ea8f79" class="btn"><a class="nav-link" href='{{path ('afficherById', {id : 6}) }}'>Article dont l'id est 6</a></button>
+        </li>
+        <li>
+            <button style="color:#ea8f79" class="btn"><a class="nav-link"  href='{{path ('afficherById', {id : 5}) }}'>Article dont l'id est 5</a></button>
+        </li>
+        <li>
+            <button style="color:#ea8f79" class="btn"><a class="nav-link"  href='{{path ('afficherById', {id : 3}) }}'>Article dont l'id est 3</a></button>
+        </li>
+    </ul>
 
 </div>
 {% endblock %}

@@ -46,7 +46,9 @@ class ArticleRepository extends ServiceEntityRepository
     public function findByContent($contenu)
     {
         return $this->createQueryBuilder('a')
+            // ici :contenu est une variable
             ->andWhere('a.contenu like :contenu')
+            // on set la valeur de la key 'contenu' avec '% . $contenu . %'
             ->setParameter('contenu', '%' . $contenu . '%')
             ->orderBy('a.date', 'ASC')
             ->setMaxResults(10)
@@ -63,7 +65,7 @@ class ArticleRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('d')
             ->andWhere('d.date like :annee')
-            ->setParameter('date', '%' . $annee . '%')
+            ->setParameter('annee', '%' . $annee . '%')
             ->orderBy('d.date', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
