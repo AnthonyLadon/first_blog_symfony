@@ -1,47 +1,48 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mon Blog{% endblock %}
+{% block title %}Mon Blog
+{% endblock %}
 
 {% block body %}
 
-<div class="m-wrap-home">
-    <h1>Bienvenue sur mon Blog</h1>
+	<div class="m-wrap-home">
+		<h1 class="main-title">Bienvenue sur mon Blog</h1>
 
-    <h3>Recherche par mot clef:</h3>
-    <p>
-        <a class="article-links" href="{{ path ('afficherParContenu', { contenu : "magique"}) }}">Articles contenants le mot "magique"</a>
-    </p>
+		<h3>Recherche par mot clef:</h3>
+		<p class="home-link">
+			<a class="article-links" href="{{ path ('afficherParContenu', { contenu : "magique"}) }}">Articles contenants le mot "magique"</a>
+		</p>
 
-    <h3 >Articles par années:</h3>
-    <ul >
-        <li>
-            <a class="article-links" href='{{path ('afficherParAnnee', { annee : 2015}) }}'>2015</a>
-        </li>
-                <li>
-            <a class="article-links" href='{{path ('afficherParAnnee', { annee : 2018}) }}'>2018</a>
-        </li>
-                <li>
-            <a class="article-links" href='{{path ('afficherParAnnee', { annee : 2021}) }}'>2021</a>
-        </li>
-    </ul>
+		<h3>Articles par années:</h3>
+		<ul>
+			<li class="home-link">
+				<a class="article-links" href='{{path ('afficherParAnnee', { annee : 2015}) }}'>2015</a>
+			</li>
+			<li class="home-link">
+				<a class="article-links" href='{{path ('afficherParAnnee', { annee : 2018}) }}'>2018</a>
+			</li>
+			<li class="home-link">
+				<a class="article-links" href='{{path ('afficherParAnnee', { annee : 2021}) }}'>2021</a>
+			</li>
+		</ul>
 
-    <h3>Article par ID</h3>
-    <ul> 
-        <li>
-            <a class="article-links" href='{{path ('afficherById', {id : 6}) }}'>Article dont l'id est 6</a>
-        </li>
-        <li>
-            <a  class="article-links" href='{{path ('afficherById', {id : 5}) }}'>Article dont l'id est 5</a>
-        </li>
-        <li>
-            <a class="article-links" href='{{path ('afficherById', {id : 3}) }}'>Article dont l'id est 3</a>
-        </li>
-    </ul>
+		<h3>Article par ID</h3>
+		<ul>
+			<li class="home-link">
+				<a class="article-links" href='{{path ('afficherById', {id : 11}) }}'>Article dont l'id est 11</a>
+			</li>
+			<li class="home-link">
+				<a class="article-links" href='{{path ('afficherById', {id : 12}) }}'>Article dont l'id est 12</a>
+			</li>
+			<li class="home-link">
+				<a class="article-links" href='{{path ('afficherById', {id : 13}) }}'>Article dont l'id est 13</a>
+			</li>
+		</ul>
 
-</div>
+	</div>
 {% endblock %}
 {% block javascripts %}
-{# ne pas overrider le script parent #} 
-{{ parent() }}
-<script src="{{ asset('js/vote.js') }}"></script> 
+	{# ne pas overrider le script parent #}
+	{{ parent() }}
+	<script src="{{ asset('js/vote.js') }}"></script>
 {% endblock %}

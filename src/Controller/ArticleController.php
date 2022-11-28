@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use DateTime;
 use App\Entity\Article;
+use App\Entity\Categorie;
+use Doctrine\DBAL\Driver\IBMDB2\Exception\Factory;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,20 +15,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ArticleController extends AbstractController
 {
-    /**
-     * @route("/article", name="blog")
-     */
-
-    public function index(): Response
-    {
-        return $this->render('article/index.html.twig', [
-            'controller_name' => 'ArticleController',
-        ]);
-    }
 
     /**
      * @route("/article/list", name="arrays")
      */
+    // crée une liste de nombres aléatoires
+    // et les traite en Twig dans la page article/list.html.twig
     public function array(): Response
     {
         $nb = [];
@@ -48,6 +42,7 @@ class ArticleController extends AbstractController
     /**
      * @route("/article/string")
      */
+
     public function array_first(): Response
     {
         $tabString = [
@@ -71,6 +66,7 @@ class ArticleController extends AbstractController
     public function date(): Response
     {
 
+        // Crée une date aleatoire entre janvier 2020 et decembre 2025
         $date_random = rand(strtotime("Jan 01 2020"), strtotime("Dec 01 2025"));
         //  = date("d.m.Y", $timestamp);
         // $current_date = date("d.m.Y");
@@ -88,6 +84,7 @@ class ArticleController extends AbstractController
      * @Route("/nom")
      */
 
+    // Affiche une chaine de caractères sur la page
     public function MonNom(): Response
     {
         return new Response(
@@ -108,21 +105,6 @@ class ArticleController extends AbstractController
         );
     }
 
-    /**
-     * @Route("article/detail{numero}")
-     */
-
-    // A FAIRE: passer paramêtre numero dans la route 
-    public function detail($numero)
-    {
-        return $this->render(
-            'article/detail.html.twig',
-            [
-                'numero' => $numero
-            ]
-        );
-    }
-
 
     /**
      * @Route("article/ajout")
@@ -130,19 +112,25 @@ class ArticleController extends AbstractController
 
     // public function new(EntityManagerInterface $entityManager): Response
     // {
-    // $article = new Article();
+
+    //     $faker = Factory::create();
+    //     $article = new Article;
+    //     $article->setTitre($faker->title);
+    //     $article->setContenu($faker->text($maxNbChars = 200));
+    //     $article->setDate($faker->dateTimeBetween($startDate = '-5 years', $endDate = 'now', $timezone = "Europe/Paris"));
+
     // $article->setTitre('Mon article 1');
-    // $article->setContenu('Lorem ipsum dolor sit amet,adised temlis.');
+    // $article->setContenu('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.');
     // $article->setDate(new DateTime("2015-03-14 00:00"));
 
     // $article = new Article();
-    // $article->setTitre('Mon article 2');
-    // $article->setContenu('Lorem ipsum dolor magique sit amet,adised temlis.');
+    // $article->setTitre('consectetur adipiscing');
+    // $article->setContenu('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut magique labore et dolore magna. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.');
     // $article->setDate(new DateTime("2018-01-01 00:00"));
 
     // $article = new Article();
-    // $article->setTitre('Mon article 3');
-    // $article->setContenu('Lorem ipsum dolor sit amet,adised temlis.');
+    // $article->setTitre('Labore et dolore');
+    // $article->setContenu('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.');
     // $article->setDate(new DateTime("2021-01-01 00:00"));
 
     // $entityManager->persist($article);
@@ -152,7 +140,7 @@ class ArticleController extends AbstractController
     // $entityManager->remove($article);
     // $entityManager->flush();
 
-    // return new Response("Article bien envoyé en base de donnée");
+    //     return new Response("Article bien envoyé en base de donnée");
     // }
 
 
@@ -179,13 +167,16 @@ class ArticleController extends AbstractController
     public function detailArticles($id, EntityManagerInterface $entityManager)
     {
         $repository = $entityManager->getRepository(Article::class);
+        $repository2 = $entityManager->getRepository(Categorie::class);
 
         $article = $repository->find($id);
+        $categorie = $repository2->findCategByArticleId($id);
 
         return $this->render(
             'article/detail.html.twig',
             [
-                'article' => $article
+                'article' => $article,
+                'categ' => $categorie
             ]
         );
     }
@@ -238,10 +229,13 @@ class ArticleController extends AbstractController
     /**
      * @Route("/article/afficher/{id}/voter", name="article_vote", methods="POST") 
      */
-    public function articleVote(Article $article, Request $request, EntityManagerInterface $entityManager)
+    public function articleVote(Article $article, Request $request, EntityManagerInterface $entityManager, $id)
     {
         // afficher l'article et le contenu de a requête 
         // dd($article, $request->request->all());
+
+        $repository2 = $entityManager->getRepository(Categorie::class);
+        $categorie = $repository2->findCategByArticleId($id);
 
         // récupérer la valeur de la direction via l'objet request 
         $direction = $request->request->get('direction');
@@ -256,7 +250,7 @@ class ArticleController extends AbstractController
         $entityManager->flush();
 
         // affichera votre URL article/voter
-        return $this->render('article/detail.html.twig', ['article' => $article,]);
+        return $this->render('article/detail.html.twig', ['article' => $article, 'categ' => $categorie]);
         // redirige vers la route d’affichage d’un article
         return $this->redirectToRoute('afficherById', ['id' => $article->getId()]);
     }

@@ -1,0 +1,56 @@
+
+  .article-cards-display{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:center;
+  }
+
+
+  .article-card{
+    display: flex;
+    flex-wrap: wrap;
+    text-decoration: none;
+    text-align:center;
+    color: $color1;
+    display: block;
+    padding: 2rem 1rem 1rem 1rem;
+    margin: 1rem;
+    height: 8rem;
+    width: 8rem;
+    background: rgb(255,255,255);
+    background: linear-gradient(120deg, rgba(255,255,255,1) 0%, rgba(241,221,191,1) 73%);
+    border-radius: 28% 72% 65% 35% / 22% 38% 62% 78%;
+    box-shadow: 2px 1px $background-color;
+  }
+
+  .m-article-content{
+    display: flex;
+    justify-content: center;
+    min-height: 5rem;
+    border-radius: 5px;
+    padding: 0.5rem;
+    background: rgb(255,255,255);
+    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(241,221,191,1) 73%);
+    color: $color2;
+  }
+
+  .m-article-date{
+    display: flex;
+    justify-content: center;
+    font-size: 0.8rem;
+    color: $color2;
+  }
+
+  .m-vote{
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0 0 0;
+  }
+
+  .m-vote-thumb{
+    border: none;
+  }
+
+  .vote-count{
+    color: $color2;
+  }

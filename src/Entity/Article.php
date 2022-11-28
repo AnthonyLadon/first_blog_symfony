@@ -26,6 +26,10 @@ class Article
     #[ORM\Column]
     private ?int $votes = 0;
 
+    #[ORM\ManyToOne(inversedBy: 'art_categorie')]
+    private ?Categorie $Categorie = null;
+
+
 
     public function getId(): ?int
     {
@@ -95,5 +99,17 @@ class Article
     public function downVote()
     {
         $this->setVotes($this->getVotes() - 1);
+    }
+
+    public function getCategorie(): ?Categorie
+    {
+        return $this->Categorie;
+    }
+
+    public function setCategorie(?Categorie $Categorie): self
+    {
+        $this->Categorie = $Categorie;
+
+        return $this;
     }
 }

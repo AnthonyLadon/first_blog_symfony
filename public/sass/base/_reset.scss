@@ -7,6 +7,12 @@ html, body, div, form, fieldset, legend, label
  padding: 0; 
 }
 
+ul, li{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
 table
 {
  border-collapse: collapse;
@@ -21,14 +27,6 @@ th, td
 
 img { border: 0; }
 
-
-/* ******************* */
-
-
-h1{
-    color:#9f609c;
-}
-
-p{
-    color:#ea8f79;
+h1, h2, h3, h4, h5, h6, li, a, p{
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }

@@ -19,9 +19,10 @@ class HomeController extends AbstractController
 {
 
     /**
-     * @Route("/", name="home")
+     * @Route("/home", name="blog")
      */
 
+    // route vers page d'accueil (Ici pas de parametre à passer)
     public function index(): Response
     {
         return $this->render('article/index.html.twig');
