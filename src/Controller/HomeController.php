@@ -19,7 +19,7 @@ class HomeController extends AbstractController
 {
 
     /**
-     * @Route("/home", name="blog")
+     * @Route("/", name="home")
      */
 
     // route vers page d'accueil (Ici pas de parametre à passer)

@@ -73,6 +73,22 @@ class ArticleRepository extends ServiceEntityRepository
     }
 
 
+    /**
+     * @return Article[] Returns an array of Article objects
+     */
+
+    // Recherche une liste d'articles par leur categorie 
+    public function AfficherArticleParCategorie($id_cat)
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.Categorie = :categ')
+            ->setParameter('categ', $id_cat)
+            ->orderBy('a.titre', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+
 
     //    /**
     //     * @return Article[] Returns an array of Article objects

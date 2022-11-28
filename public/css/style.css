@@ -115,8 +115,12 @@ h3 {
 .l-main-nav-link {
   display: inline-block;
   text-decoration: none;
+  border: solid 1px #f1ddbf;
+  border-radius: 20px;
+  box-shadow: 1px 1px 3px #A69172;
+  padding: 0.2rem;
   font-size: 1.5rem;
-  margin: 0.5rem 0 0 0.5rem;
+  margin: 0.5rem 0.5rem 0 0;
   color: #6289A6;
 }
 

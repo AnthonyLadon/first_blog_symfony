@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CategorieController!
+{% endblock %}
+
+{% block body %}
+
+	<div>
+		<h1 class="main-title">Catégories</h1>
+		<ul class="article-cards-display">
+			{% for cat in categories %}
+				<li>
+					{# ici lien vers la vue 'liste_articles_categories' suivi de l'id de la categorie dans le parametre id_cat #}
+					<a class="article-card" href="{{path('liste_articles_categories',{id_cat :cat.id})}}">{{ cat.nomCateg }}</a>
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+{% endblock %}

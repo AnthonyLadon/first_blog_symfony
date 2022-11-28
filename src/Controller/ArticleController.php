@@ -218,10 +218,14 @@ class ArticleController extends AbstractController
     /**
      * @Route("/article/afficher/{id}", name="afficherById") 
      */
-    public function afficherById(Article $article): Response
+    public function afficherById(Article $article, EntityManagerInterface $entityManager, $id): Response
     {
+        $repository2 = $entityManager->getRepository(Categorie::class);
+        $categorie = $repository2->findCategByArticleId($id);
+
         return $this->render('article/detail.html.twig', [
-            'article' => $article
+            'article' => $article,
+            'categ' => $categorie
         ]);
     }
 
@@ -253,5 +257,18 @@ class ArticleController extends AbstractController
         return $this->render('article/detail.html.twig', ['article' => $article, 'categ' => $categorie]);
         // redirige vers la route d’affichage d’un article
         return $this->redirectToRoute('afficherById', ['id' => $article->getId()]);
+    }
+
+    /**
+     * @route ("article/liste/{id_cat}", name="liste_articles_categories")
+     */
+    public function ListeArticlesParCategories(EntityManagerInterface $entityManager, $id_cat): Response
+    {
+        $repository = $entityManager->getRepository(Article::class);
+        $art_categorie = $repository->AfficherArticleParCategorie($id_cat);
+
+        return $this->render('article/listeArticles.html.twig', [
+            "article" => $art_categorie
+        ]);
     }
 }
