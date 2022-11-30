@@ -167,16 +167,17 @@ class ArticleController extends AbstractController
     public function detailArticles($id, EntityManagerInterface $entityManager)
     {
         $repository = $entityManager->getRepository(Article::class);
-        $repository2 = $entityManager->getRepository(Categorie::class);
+        // Pour utiliser ma requete DQL personnalisée:
+        // $repository2 = $entityManager->getRepository(Categorie::class);
 
         $article = $repository->find($id);
-        $categorie = $repository2->findCategByArticleId($id);
+        // $categorie = $repository2->findCategByArticleId($id);
 
         return $this->render(
             'article/detail.html.twig',
             [
                 'article' => $article,
-                'categ' => $categorie
+                // 'categ' => $categorie
             ]
         );
     }
